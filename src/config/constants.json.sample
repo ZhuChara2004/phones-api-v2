@@ -1,0 +1,4 @@
+{
+  "DB_ADDRESS": "mongodb://localhost:27017/node-phones-api",
+  "PORT": 3000
+}
