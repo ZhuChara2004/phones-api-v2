@@ -15,7 +15,7 @@
   },
   "keywords": [],
   "author": "Dmitry Zhuk",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
