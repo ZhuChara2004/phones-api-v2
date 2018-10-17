@@ -32,6 +32,7 @@ router.post('/', async (req, res) => {
   await buildOrder(sum, order);
   order.save((err, doc) => {
     if (err) return res.status(500).json({ message: err.message });
+    console.log('Final order:', doc);
     res.status(201).json(doc);
   });
 });
