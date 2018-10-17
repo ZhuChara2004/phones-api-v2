@@ -11,10 +11,12 @@ const ordersRouter = require('./src/routes/ordersRouter');
 mongoose.connect(config.DB_ADDRESS);
 const db = mongoose.connection;
 
-db.on('error', err => {
+db.on('error', (err) => {
+  // eslint-disable-next-line no-console
   console.error(`Error while connecting to DB: ${err.message}`);
 });
 db.once('open', () => {
+  // eslint-disable-next-line no-console
   console.log('DB connected successfully!');
 });
 
@@ -29,5 +31,6 @@ app.use('/phones', phonesRouter);
 app.use('/orders', ordersRouter);
 
 const server = app.listen(config.PORT || 3000, () => {
-  console.log("app running on port", server.address().port);
+  // eslint-disable-next-line no-console
+  console.log('app running on port', server.address().port);
 });

@@ -3,6 +3,9 @@ module.exports = {
     'airbnb-base',
     'plugin:jest/recommended',
   ],
+  rules: {
+    "jest/valid-expect": "off",
+  },
   plugins: [
     'import',
     'jest',

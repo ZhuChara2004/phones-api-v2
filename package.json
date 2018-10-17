@@ -5,8 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint src/models/** src/routes/**"
+    "test": "jest src --detectOpenHandles --forceExit",
+    "lint": "eslint app.js src/models/** src/routes/**",
+    "lint:fix": "eslint --fix app.js src/models/** src/routes/**"
   },
   "keywords": [],
   "author": "Dmitry Zhuk",
@@ -20,10 +21,15 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^5.7.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jest": "^21.25.1",
-    "jest": "^23.6.0"
+    "factory-girl": "^5.0.2",
+    "jest": "^23.6.0",
+    "sinon": "^6.3.5",
+    "sinon-mongoose": "^2.2.1",
+    "supertest": "^3.3.0"
   }
 }
