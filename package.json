@@ -9,6 +9,10 @@
     "lint": "eslint app.js src/models/** src/routes/**",
     "lint:fix": "eslint --fix app.js src/models/** src/routes/**"
   },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/ZhuChara2004/phones-api-v2"
+  },
   "keywords": [],
   "author": "Dmitry Zhuk",
   "license": "ISC",

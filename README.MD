@@ -15,3 +15,9 @@
 
 ### Linter
 ```yarn lint```
+
+
+### ES6 Syntax application
+Same application, using ES6 syntax and `.mjs` files format. Can be run natively with `node --experimental-modules app.mjs`
+
+[GitHub](https://github.com/ZhuChara2004/node-phones-api)
