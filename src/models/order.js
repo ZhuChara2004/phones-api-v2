@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+
+const { Schema } = mongoose;
 
 const OrderSchema = new Schema({
   userId: String,
@@ -7,7 +8,7 @@ const OrderSchema = new Schema({
     {
       phoneId: String,
       phoneCount: Number,
-    }
+    },
   ],
   orderSum: { type: Number, default: 0 },
 }, { timestamps: true });

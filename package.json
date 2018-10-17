@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/models/** src/routes/**"
   },
   "keywords": [],
   "author": "Dmitry Zhuk",
@@ -17,5 +18,12 @@
     "mongodb": "^3.1.8",
     "mongoose": "^5.3.4",
     "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.25.1",
+    "jest": "^23.6.0"
   }
 }

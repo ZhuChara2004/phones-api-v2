@@ -1,22 +1,23 @@
 const express = require('express');
-const router = express.Router();
 const axios = require('axios');
 
-const Order = require('../models/order').Order;
+const { Order } = require('../models/order');
+
+const router = express.Router();
 
 router.get('/', (req, res) => {
   Order.find({}).exec((err, docs) => {
     if (err) return res.status(500).json({ message: err.message });
-    res.json(docs);
-  })
+    return res.json(docs);
+  });
 });
 
 router.post('/', async (req, res) => {
-  const order = new Order(req.body);
-  let sum = 0;
+  const newOrder = new Order(req.body);
+  const orderSum = 0;
 
   async function fetchPrice(order) {
-    const promises = order.cart.map(async el => {
+    const promises = order.cart.map(async (el) => {
       const { data: { price } } = await axios.get(`http://localhost:3000/phones/${el.phoneId}`);
       return price * el.phoneCount;
     });
@@ -24,23 +25,23 @@ router.post('/', async (req, res) => {
   }
 
   async function buildOrder(sum, order) {
-    const newSum = await fetchPrice(order);
-    order.orderSum = newSum;
-    return newSum;
+    return fetchPrice(order);
   }
 
-  await buildOrder(sum, order);
-  order.save((err, doc) => {
+  newOrder.orderSum = await buildOrder(orderSum, newOrder);
+
+  newOrder.save((err, doc) => {
     if (err) return res.status(500).json({ message: err.message });
+    // eslint-disable-next-line no-console
     console.log('Final order:', doc);
-    res.status(201).json(doc);
+    return res.status(201).json(doc);
   });
 });
 
 router.get('/:id', (req, res) => {
   Order.findById(req.params.id, (err, doc) => {
     if (!doc) {
-      res.status(404).json({ status: 'Not found' })
+      res.status(404).json({ status: 'Not found' });
     } else {
       res.status(200).json(doc);
     }
