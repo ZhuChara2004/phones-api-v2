@@ -1,7 +1,9 @@
 const express = require('express');
+const validate = require('express-validation');
 const axios = require('axios');
 
 const { Order } = require('../models/order');
+const orderValidation = require('../validation/order');
 
 const router = express.Router();
 
@@ -12,7 +14,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/', async (req, res) => {
+router.post('/', validate(orderValidation), async (req, res) => {
   const newOrder = new Order(req.body);
   const orderSum = 0;
 

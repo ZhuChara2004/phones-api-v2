@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const validation = require('express-validation');
 
 const config = require('./src/config/constants');
 const usersRouter = require('./src/routes/usersRouter');
@@ -31,6 +32,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/users', usersRouter);
 app.use('/phones', phonesRouter);
 app.use('/orders', ordersRouter);
+
+app.use((err, req, res, next) => {
+  if (err instanceof validation.ValidationError) return res.status(err.status).json(err);
+
+  if (process.env.NODE_ENV !== 'production') {
+    return res.status(500).send(err.stack);
+  } else {
+    return res.status(500);
+  }
+});
 
 const server = app.listen(config.PORT || 3000, () => {
   // eslint-disable-next-line no-console
