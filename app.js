@@ -8,7 +8,9 @@ const usersRouter = require('./src/routes/usersRouter');
 const phonesRouter = require('./src/routes/phonesRouter');
 const ordersRouter = require('./src/routes/ordersRouter');
 
-mongoose.connect(config.DB_ADDRESS);
+const DB_ADDRESS = process.env.DATABASE_URL || config.DB_ADDRESS;
+
+mongoose.connect(DB_ADDRESS);
 const db = mongoose.connection;
 
 db.on('error', (err) => {

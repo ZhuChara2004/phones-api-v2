@@ -74,3 +74,5 @@ typings/
 
 # Config
 src/config/constants.json
+
+data
