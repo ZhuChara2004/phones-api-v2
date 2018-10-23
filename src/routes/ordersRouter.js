@@ -20,7 +20,7 @@ router.post('/', validate(orderValidation), async (req, res) => {
 
   async function fetchPrice(order) {
     const promises = order.cart.map(async (el) => {
-      const { data: { price } } = await axios.get(`http://localhost:3000/phones/${el.phoneId}`);
+      const { data: { price } } = await axios.get(`${process.env.API_URL}/phones/${el.phoneId}`);
       return price * el.phoneCount;
     });
     return (await Promise.all(promises)).reduce((a, b) => a + b, 0);
