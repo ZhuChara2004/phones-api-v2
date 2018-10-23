@@ -15,7 +15,7 @@
 [Postman collection](https://www.getpostman.com/collections/62ace60261f009dc09aa)
 
 ### Start application
-```yarn start```
+```docker-compose up```
 
 ### Run tests
 ```yarn test```

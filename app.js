@@ -33,14 +33,13 @@ app.use('/users', usersRouter);
 app.use('/phones', phonesRouter);
 app.use('/orders', ordersRouter);
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   if (err instanceof validation.ValidationError) return res.status(err.status).json(err);
 
   if (process.env.NODE_ENV !== 'production') {
     return res.status(500).send(err.stack);
-  } else {
-    return res.status(500);
   }
+  return res.status(500);
 });
 
 const server = app.listen(config.PORT || 3000, () => {
